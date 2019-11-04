@@ -3,7 +3,7 @@ Compile C# scripts into DLLs in Unity
 
 Mainly use the file, `mcs.bat`, to help build a dll.
 
-```
+```cs
 var outputdllName = "your_ouput_DLL_name.dll";
 var assemblyFileName = "your_referemce_dll_1.dll,your_referemce_dll_2.dll";
 var source = "your_cs_script_1.cs your_cs_script_2.cs";
