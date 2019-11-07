@@ -4,6 +4,13 @@ Compile C# scripts into DLLs in Unity
 Mainly use the file, `mcs.bat`, to help build a dll.
 
 ```cs
+#if UNITY_EDITOR_WIN
+readonly string MCSCompilerPath = Path.Combine(EditorApplication.applicationContentsPath,
+                                         "MonoBleedingEdge/bin/mcs.bat");
+#elif UNITY_EDITOR_OSX
+readonly string MCSCompilerPath = Path.Combine(EditorApplication.applicationContentsPath,
+                                         "MonoBleedingEdge/bin/mcs");
+#endif
 var outputdllName = "your_ouput_DLL_name.dll";
 var assemblyFileName = "your_referemce_dll_1.dll,your_referemce_dll_2.dll";
 var source = "your_cs_script_1.cs your_cs_script_2.cs";
@@ -13,8 +20,7 @@ process.StartInfo.UseShellExecute = false;
 process.StartInfo.CreateNoWindow = true;
 process.StartInfo.RedirectStandardError = true;
 process.StartInfo.RedirectStandardOutput = true;
-process.StartInfo.FileName = Path.Combine(EditorApplication.applicationContentsPath,
-                                         @"MonoBleedingEdge\bin\mcs.bat");
+process.StartInfo.FileName = MCSCompilerPath;
 process.StartInfo.Arguments = string.Format(
                                 @"-target:library -sdk:2 -r:""{0}"" -out:{1} {2}",
                                 assemblyFileName, outputdllName, source);
