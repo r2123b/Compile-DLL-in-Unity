@@ -1,4 +1,4 @@
-# Compile-DLL-in-Unity
+# Compile DLL in Unity
 Compile C# scripts into DLLs in Unity
 
 Mainly use the file, `mcs.bat`(in Windows) or `mcs` (in MacOS), to help build a dll.
